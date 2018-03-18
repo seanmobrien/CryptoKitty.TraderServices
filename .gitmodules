@@ -1,0 +1,3 @@
+[submodule "modules/CryptoKitties.Net.Api"]
+	path = modules/CryptoKitties.Net.Api
+	url = https://github.com/seanmobrien/CryptoKitties.Net.Api
