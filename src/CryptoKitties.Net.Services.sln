@@ -17,6 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoKitties.Net.Toolkit",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoKitties.Net.Toolkit.Tests", "..\modules\CryptoKitties.Net.Api\src\CryptoKitties.Net.Toolkit.Tests\CryptoKitties.Net.Toolkit.Tests.csproj", "{8620B18D-CDF8-45A5-AF59-E39F71398666}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website", "Website\Website.csproj", "{06C60421-B634-4DCB-88D2-DB9D1EFCBA9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoKitties.Net.Services.AccountObserver", "CryptoKitties.Net.Services.AccountObserver\CryptoKitties.Net.Services.AccountObserver.csproj", "{021B7A23-7B23-476D-9276-B82E1D0C67A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoKitties.Net.Services.AccountObserver.Interfaces", "CryptoKitties.Net.Services.AccountObserver.Interfaces\CryptoKitties.Net.Services.AccountObserver.Interfaces.csproj", "{540121FE-C6FC-4583-904A-C39268FDCB77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoKitties.Net.Services.TransactionPublisher", "CryptoKitties.Net.Services.TransactionPublisher\CryptoKitties.Net.Services.TransactionPublisher.csproj", "{966BE413-91D7-4D79-9FCA-B82F9866B9FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +79,32 @@ Global
 		{8620B18D-CDF8-45A5-AF59-E39F71398666}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8620B18D-CDF8-45A5-AF59-E39F71398666}.Release|x64.ActiveCfg = Release|Any CPU
 		{8620B18D-CDF8-45A5-AF59-E39F71398666}.Release|x64.Build.0 = Release|Any CPU
+		{06C60421-B634-4DCB-88D2-DB9D1EFCBA9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06C60421-B634-4DCB-88D2-DB9D1EFCBA9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06C60421-B634-4DCB-88D2-DB9D1EFCBA9E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{06C60421-B634-4DCB-88D2-DB9D1EFCBA9E}.Debug|x64.Build.0 = Debug|Any CPU
+		{06C60421-B634-4DCB-88D2-DB9D1EFCBA9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06C60421-B634-4DCB-88D2-DB9D1EFCBA9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06C60421-B634-4DCB-88D2-DB9D1EFCBA9E}.Release|x64.ActiveCfg = Release|Any CPU
+		{06C60421-B634-4DCB-88D2-DB9D1EFCBA9E}.Release|x64.Build.0 = Release|Any CPU
+		{021B7A23-7B23-476D-9276-B82E1D0C67A4}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{021B7A23-7B23-476D-9276-B82E1D0C67A4}.Debug|x64.ActiveCfg = Debug|x64
+		{021B7A23-7B23-476D-9276-B82E1D0C67A4}.Debug|x64.Build.0 = Debug|x64
+		{021B7A23-7B23-476D-9276-B82E1D0C67A4}.Release|Any CPU.ActiveCfg = Release|x64
+		{021B7A23-7B23-476D-9276-B82E1D0C67A4}.Release|x64.ActiveCfg = Release|x64
+		{021B7A23-7B23-476D-9276-B82E1D0C67A4}.Release|x64.Build.0 = Release|x64
+		{540121FE-C6FC-4583-904A-C39268FDCB77}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{540121FE-C6FC-4583-904A-C39268FDCB77}.Debug|x64.ActiveCfg = Debug|x64
+		{540121FE-C6FC-4583-904A-C39268FDCB77}.Debug|x64.Build.0 = Debug|x64
+		{540121FE-C6FC-4583-904A-C39268FDCB77}.Release|Any CPU.ActiveCfg = Release|x64
+		{540121FE-C6FC-4583-904A-C39268FDCB77}.Release|x64.ActiveCfg = Release|x64
+		{540121FE-C6FC-4583-904A-C39268FDCB77}.Release|x64.Build.0 = Release|x64
+		{966BE413-91D7-4D79-9FCA-B82F9866B9FA}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{966BE413-91D7-4D79-9FCA-B82F9866B9FA}.Debug|x64.ActiveCfg = Debug|x64
+		{966BE413-91D7-4D79-9FCA-B82F9866B9FA}.Debug|x64.Build.0 = Debug|x64
+		{966BE413-91D7-4D79-9FCA-B82F9866B9FA}.Release|Any CPU.ActiveCfg = Release|x64
+		{966BE413-91D7-4D79-9FCA-B82F9866B9FA}.Release|x64.ActiveCfg = Release|x64
+		{966BE413-91D7-4D79-9FCA-B82F9866B9FA}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

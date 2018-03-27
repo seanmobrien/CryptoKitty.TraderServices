@@ -32,7 +32,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CryptoKitties.Net.Services.AccountObserver\CryptoKitties.Net.Services.AccountObserver.csproj" />
+    <ProjectReference Include="..\CryptoKitties.Net.Services.TransactionPublisher\CryptoKitties.Net.Services.TransactionPublisher.csproj" />
     <ProjectReference Include="..\KittyTraderService\KittyTraderService.csproj" />
+    <ProjectReference Include="..\Website\Website.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <PropertyGroup>
