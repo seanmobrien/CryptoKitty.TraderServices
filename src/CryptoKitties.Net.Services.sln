@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website", "Website\Website.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoKitties.Net.Services.AccountObserver", "CryptoKitties.Net.Services.AccountObserver\CryptoKitties.Net.Services.AccountObserver.csproj", "{021B7A23-7B23-476D-9276-B82E1D0C67A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoKitties.Net.Services.AccountObserver.Interfaces", "CryptoKitties.Net.Services.AccountObserver.Interfaces\CryptoKitties.Net.Services.AccountObserver.Interfaces.csproj", "{540121FE-C6FC-4583-904A-C39268FDCB77}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoKitties.Net.Services.Interfaces", "CryptoKitties.Net.Services.AccountObserver.Interfaces\CryptoKitties.Net.Services.Interfaces.csproj", "{540121FE-C6FC-4583-904A-C39268FDCB77}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoKitties.Net.Services.TransactionPublisher", "CryptoKitties.Net.Services.TransactionPublisher\CryptoKitties.Net.Services.TransactionPublisher.csproj", "{966BE413-91D7-4D79-9FCA-B82F9866B9FA}"
 EndProject

@@ -14,6 +14,7 @@ namespace CryptoKitties.Net.Services.TransactionPublisher
         /// </summary>
         private static void Main()
         {
+            /*
             try
             {
                 // The ServiceManifest.XML file defines one or more service type names.
@@ -34,6 +35,7 @@ namespace CryptoKitties.Net.Services.TransactionPublisher
                 ServiceEventSource.Current.ServiceHostInitializationFailed(e.ToString());
                 throw;
             }
+            */
         }
     }
 }

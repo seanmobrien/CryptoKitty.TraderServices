@@ -5,9 +5,10 @@ using System.Fabric.Description;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.ServiceFabric.Data.Collections;
-using Microsoft.ServiceFabric.Services.Communication.Runtime;
-using Microsoft.ServiceFabric.Services.Runtime;
+using CryptoKitties.Net.Services.Interfaces.TransactionPublisher;
+using CryptoKitties.Net.Services.Models.TransationPublisher;
+using Microsoft.ServiceFabric.Actors;
+using Microsoft.ServiceFabric.Actors.Runtime;
 using Nethereum.Contracts;
 using Nethereum.RPC.Eth.DTOs;
 using Nethereum.Web3;
@@ -17,81 +18,26 @@ namespace CryptoKitties.Net.Services.TransactionPublisher
     /// <summary>
     /// An instance of this class is created for each service instance by the Service Fabric runtime.
     /// </summary>
-    internal sealed class TransactionPublisher : StatefulService
+    [StatePersistence(StatePersistence.Persisted)]
+    internal sealed class TransactionPublisher : Actor, ITransactionPublisher
     {
-        public TransactionPublisher(StatefulServiceContext context)
-            : base(context)
-        { }
-
-
-        private Web3 Web3 { get; set; }
-        private string ContractAddress { get; set; }
-
-        private Event SaleEvent { get; set; }
-        private Event AuctionEvent { get; set; }
-
-
-
-        /// <summary>
-        /// Optional override to create listeners (e.g., HTTP, Service Remoting, WCF, etc.) for this service replica to handle client or user requests.
-        /// </summary>
-        /// <remarks>
-        /// For more information on service communication, see https://aka.ms/servicefabricservicecommunication
-        /// </remarks>
-        /// <returns>A collection of listeners.</returns>
-        protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListeners()
+        public TransactionPublisher(ActorService actorService, ActorId actorId)
+            : base(actorService, actorId)
         {
+        }
+     
+        /// <summary>
+        /// This method is called whenever an actor is activated.
+        /// An actor is activated the first time any of its methods are invoked.
+        /// </summary>
+        protected override Task OnActivateAsync()
+        {
+            ActorEventSource.Current.ActorMessage(this, "Actor activated.");
+
+
+
             /*
-            var listenerSettings = new FabricTransportRemotingListenerSettings
-            {
-                MaxMessageSize = 10000000,
-                SecurityCredentials = RemotingExtensions.GetSecurityCredentials(
-                    RemotingExtensions.Certificates.ServiceThumbprint,
-                    RemotingExtensions.Certificates.WebsiteThumbprint,
-                    RemotingExtensions.Certificates.WebsiteCommonName
-                )
-            };
-            return new[] {
-                new ServiceReplicaListener(context => new FabricTransportServiceRemotingListener(context, this, listenerSettings))
-            };
-            */
-            return new ServiceReplicaListener[0];
-        }
-        /// <summary>
-        /// This is the main entry point for your service instance.
-        /// </summary>
-        /// <param name="cancellationToken">Canceled when Service Fabric needs to shut down this service instance.</param>
-        protected override async Task RunAsync(CancellationToken cancellationToken)
-        {
-            await OnActivateAsync();
-
-            var doAgain = true;
-            while (doAgain)
-            {
-                var logData = await GetLogs();
-
-                // TODO: Process logs
-            }
-             
-        }
-
-        async Task<object> GetLogs()
-        {
-            throw new Exception();
-        }
-
-
-
-
-
-
-        class StateKeys
-        {
-            public const string CurrentBlock = "CurrentBlock";
-        }
-        async Task OnActivateAsync()
-        {
-            var configurationPackage = Context.CodePackageActivationContext.GetConfigurationPackageObject("Config");
+                var configurationPackage = Context.CodePackageActivationContext.GetConfigurationPackageObject("Config");
             var config = configurationPackage.Settings.Sections["TransactionPublisherConfig"];
 
             Web3 = new Web3(config.ReadValue("EthereumConnection"));
@@ -100,7 +46,64 @@ namespace CryptoKitties.Net.Services.TransactionPublisher
                 Globals.Contracts.ABI.SalesAuction);
             sales.GetEvent("xxx");
 
+             */
 
+            // The StateManager is this actor's private state store.
+            // Data stored in the StateManager will be replicated for high-availability for actors that use volatile or persisted state storage.
+            // Any serializable object can be saved in the StateManager.
+            // For more information, see https://aka.ms/servicefabricactorsstateserialization
+
+            return this.StateManager.TryAddStateAsync("count", 0);
+        }
+
+
+        class StateKeys
+        {
+            public const string NextBlock = "NextBlock";
+            public const string RunStatus = "RunStatus";
+        }
+
+        async Task<SyncStatus> ITransactionPublisher.SyncStatus()
+        {
+            var st = this.StateManager.GetStateAsync<int>(StateKeys.RunStatus);
+            var ret = new SyncStatus
+            {
+                NextBlock = await this.StateManager.GetStateAsync<string>(StateKeys.NextBlock)
+            };
+            var status = await st;
+            switch (status)
+            {
+                case 1:
+                    ret.Running = true;
+                    break;
+                case 2:
+                    ret.Paused = true;
+                    break;
+            }
+            return ret;
+        }
+
+        async Task ITransactionPublisher.Start(CancellationToken cancellationToken)
+        {
+            var status = await this.StateManager.GetStateAsync<int>(StateKeys.RunStatus, cancellationToken);
+            if (status != 1)
+            {
+                // Start looping       
+            }
+        }
+
+        async Task ITransactionPublisher.Stop(CancellationToken cancellationToken)
+        {
+            var status = await this.StateManager.GetStateAsync<int>(StateKeys.RunStatus, cancellationToken);
+            if (status != 1) throw new InvalidOperationException();
+        }
+
+        async Task ITransactionPublisher.Pause(CancellationToken cancellationToken)
+        {
+            var status = await this.StateManager.GetStateAsync<int>(StateKeys.RunStatus, cancellationToken);
+            if (status != 1) throw new InvalidOperationException();
+
+            await this.StateManager.SetStateAsync(StateKeys.RunStatus, cancellationToken);
         }
     }
 }

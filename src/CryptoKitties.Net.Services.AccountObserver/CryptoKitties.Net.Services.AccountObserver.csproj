@@ -162,9 +162,9 @@
       <Project>{124ef5e3-e718-4dba-b8a2-2b5399a316ae}</Project>
       <Name>CryptoKitties.Net.Toolkit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CryptoKitties.Net.Services.AccountObserver.Interfaces\CryptoKitties.Net.Services.AccountObserver.Interfaces.csproj">
+    <ProjectReference Include="..\CryptoKitties.Net.Services.AccountObserver.Interfaces\CryptoKitties.Net.Services.Interfaces.csproj">
       <Project>{540121FE-C6FC-4583-904A-C39268FDCB77}</Project>
-      <Name>CryptoKitties.Net.Services.AccountObserver.Interfaces</Name>
+      <Name>CryptoKitties.Net.Services.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
