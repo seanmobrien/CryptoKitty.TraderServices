@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="CryptoKitties.Net.Fabric.KittyCatServicePkg" Version="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <ServiceTypes>
+    <StatefulServiceType ServiceTypeName="KittyCatServiceActorServiceType" HasPersistedState="true">
+      <Extensions>
+        <Extension Name="__GeneratedServiceType__" GeneratedId="54893b3f-6aaa-4a36-adc1-721435256c8f|Persisted">
+          <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
+            <DefaultService Name="KittyCatServiceActorService" />
+            <ServiceEndpoint Name="KittyCatServiceActorServiceEndpoint" />
+            <ReplicatorEndpoint Name="KittyCatServiceActorServiceReplicatorEndpoint" />
+            <ReplicatorConfigSection Name="KittyCatServiceActorServiceReplicatorConfig" />
+            <ReplicatorSecurityConfigSection Name="KittyCatServiceActorServiceReplicatorSecurityConfig" />
+            <StoreConfigSection Name="KittyCatServiceActorServiceLocalStoreConfig" />
+          </GeneratedNames>
+        </Extension>
+      </Extensions>
+    </StatefulServiceType>
+  </ServiceTypes>
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <ExeHost>
+        <Program>CryptoKitties.Net.Fabric.KittyCatService.exe</Program>
+      </ExeHost>
+    </EntryPoint>
+  </CodePackage>
+  <ConfigPackage Name="Config" Version="1.0.0" />
+  <Resources>
+    <Endpoints>
+      <Endpoint Name="KittyContractDataServiceTypeEndpoint" />
+      <Endpoint Name="KittyContractDataServiceTypeReplicatorEndpoint" />
+      <Endpoint Name="KittyCatServiceActorServiceEndpoint" />
+      <Endpoint Name="KittyCatServiceActorServiceReplicatorEndpoint" />
+    </Endpoints>
+  </Resources>
+  <!-- The content will be generated during build -->
+</ServiceManifest>
